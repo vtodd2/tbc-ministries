@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --background: #050505;
+  --foreground: #f7ebd7;
+  --surface: #111111;
+  --surface-muted: #1f1f1f;
+  --border: rgba(255, 255, 255, 0.08);
+  --gold: #d4af37;
+  --gold-soft: rgba(212, 175, 55, 0.15);
+  --shadow: 0 32px 90px rgba(0, 0, 0, 0.45);
+  --radius: 2rem;
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(212,175,55,0.12), transparent 22%), radial-gradient(circle at bottom right, rgba(255,255,255,0.04), transparent 18%), var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+::selection { background: rgba(212, 175, 55, 0.35); color: #050505; }
+
+@layer base {
+  h1,h2,h3,h4,h5,h6 { color: white; margin: 0; }
+  p { margin: 0; color: rgba(247,235,215,0.88); line-height: 1.8; }
+}
+
+@layer utilities {
+  .bg-surface { background: var(--surface); }
+  .bg-surface-muted { background: var(--surface-muted); }
+  .text-gold { color: var(--gold); }
+  .border-gold { border-color: var(--gold); }
+}

@@ -1,10 +1,20 @@
-export function SectionHeader({ title, subtitle }: { title: string; subtitle: string }) {
+interface SectionHeaderProps {
+  title: string;
+  subtitle: string;
+  align?: 'center' | 'left';
+}
+
+export function SectionHeader({ title, subtitle, align = 'center' }: SectionHeaderProps) {
+  const alignClass = align === 'left' ? 'text-left' : 'text-center';
   return (
-    <div className="space-y-3 text-center">
-      <p className="text-sm uppercase tracking-[0.35em] text-gold/80">{title}</p>
-      <p className="mx-auto max-w-2xl text-3xl font-semibold leading-tight text-white sm:text-4xl">
-        {subtitle}
-      </p>
+    <div className={`space-y-3 ${alignClass}`}>
+      <p className="text-xs uppercase tracking-[0.38em] text-gold/70">{title}</p>
+      <p
+        className={`text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl ${
+          align === 'center' ? 'mx-auto max-w-2xl' : ''
+        }`}
+        dangerouslySetInnerHTML={{ __html: subtitle }}
+      />
     </div>
   );
 }

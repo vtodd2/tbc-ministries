@@ -1,91 +1,96 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, CONTACT_EMAIL, CONTACT_PHONE, SOCIAL } from '../lib/constants';
 
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
-      '@id': 'https://www.kingdomlightministry.org/#organization',
-      name: 'Kingdom Light Ministry',
-      url: 'https://www.kingdomlightministry.org',
-      sameAs: [
-        'https://www.facebook.com/kingdomlightministry',
-        'https://www.instagram.com/kingdomlightministry',
-        'https://www.youtube.com/kingdomlightministry',
-      ],
+      '@type': 'Church',
+      '@id': `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      description: SITE_DESCRIPTION,
+      sameAs: [SOCIAL.facebook, SOCIAL.instagram, SOCIAL.youtube, SOCIAL.twitter],
       contactPoint: [
         {
           '@type': 'ContactPoint',
           contactType: 'customer support',
-          email: 'hello@kingdomlightministry.org',
-          telephone: '+1-555-014-0825',
+          email: CONTACT_EMAIL,
+          telephone: CONTACT_PHONE,
         },
       ],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': 'https://www.kingdomlightministry.org/#website',
-      url: 'https://www.kingdomlightministry.org',
-      name: 'Kingdom Light Ministry',
-      description: 'A luxury Christian ministry experience with sermons, book sales, donations, and community connection.',
-      publisher: {
-        '@id': 'https://www.kingdomlightministry.org/#organization',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1200 Horizon Ave, Suite 205',
+        addressLocality: 'Atlanta',
+        addressRegion: 'GA',
+        postalCode: '30301',
+        addressCountry: 'US',
       },
     },
     {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.kingdomlightministry.org/' },
-        { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.kingdomlightministry.org/about' },
-        { '@type': 'ListItem', position: 3, name: 'Books', item: 'https://www.kingdomlightministry.org/books' },
-        { '@type': 'ListItem', position: 4, name: 'Donate', item: 'https://www.kingdomlightministry.org/donate' },
-        { '@type': 'ListItem', position: 5, name: 'Sermons', item: 'https://www.kingdomlightministry.org/sermons' },
-        { '@type': 'ListItem', position: 6, name: 'Contact', item: 'https://www.kingdomlightministry.org/contact' },
-      ],
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: `${SITE_URL}/sermons?q={search_term_string}` },
+        'query-input': 'required name=search_term_string',
+      },
     },
   ],
 };
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kingdom Light Ministry',
-    template: '%s | Kingdom Light Ministry',
+    default: `${SITE_NAME} | Transformed by Grace`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    'A luxury Christian ministry experience with sermons, book sales, donations, and community connection.',
-  metadataBase: new URL('https://www.kingdomlightministry.org'),
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
   keywords: [
+    'Transformed Believers Church',
+    'TBC Ministries',
     'Christian ministry',
     'sermons',
-    'church resources',
+    'Christian community',
+    'faith',
+    'worship',
+    'biblical teaching',
+    'Atlanta church',
+    'online ministry',
     'Christian books',
-    'donations',
-    'faith community',
-    'luxury ministry',
+    'prayer',
+    'podcast',
   ],
-  authors: [{ name: 'Kingdom Light Ministry' }],
-  themeColor: '#000000',
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  formatDetection: { email: false, telephone: false, address: false },
   openGraph: {
-    title: 'Kingdom Light Ministry',
-    description: 'Discover sermons, devotionals, books, and support for a luxury Christian ministry.',
+    title: `${SITE_NAME} | Transformed by Grace`,
+    description: SITE_DESCRIPTION,
     type: 'website',
     locale: 'en_US',
-    siteName: 'Kingdom Light Ministry',
-    url: 'https://www.kingdomlightministry.org',
+    siteName: SITE_NAME,
+    url: SITE_URL,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kingdom Light Ministry',
-    description: 'Discover sermons, devotionals, books, and support for a luxury Christian ministry.',
-    creator: '@KingdomLight',
+    title: `${SITE_NAME} | Transformed by Grace`,
+    description: SITE_DESCRIPTION,
+    creator: '@transformedbc',
   },
   robots: {
     index: true,
     follow: true,
-    nocache: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -96,19 +101,38 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#000000',
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
+      <head>
+        <meta charSet="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="TBC Ministries" />
+      </head>
       <body>
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <div className="min-h-screen bg-brand-950 text-white selection:bg-gold/40 selection:text-black">
-          <div className="bg-hero-glow absolute inset-0 pointer-events-none" aria-hidden="true" />
+        <div className="relative min-h-screen bg-[#f8f5ee] text-slate-950 selection:bg-gold/30 selection:text-black">
+          <div className="pointer-events-none absolute inset-0 bg-hero-glow" aria-hidden="true" />
           <div className="relative z-10">
             <Header />
-            <main>{children}</main>
+            <main id="main-content">{children}</main>
             <Footer />
           </div>
         </div>
