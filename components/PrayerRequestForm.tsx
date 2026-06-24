@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { FormFeedback } from './FormFeedback';
-import { CONTACT_EMAIL } from '../lib/constants';
 
 export function PrayerRequestForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -12,10 +11,12 @@ export function PrayerRequestForm() {
     name: '',
     email: '',
     request: '',
+    honey: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((current) => ({ ...current, [name]: value }));
   };
 
   const validate = () => {
@@ -45,28 +46,29 @@ export function PrayerRequestForm() {
     setMessage('Submitting your prayer request...');
 
     try {
-      const response = await fetch(`https://formsubmit.co/${CONTACT_EMAIL}`, {
+      const response = await fetch('/api/prayer', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          name: isAnonymous ? 'Anonymous' : formData.name,
-          email: isAnonymous ? CONTACT_EMAIL : formData.email,
-          message: formData.request,
-          _subject: 'New Prayer Request — Transformed Believers Church',
-          _captcha: 'false',
-        }).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          request: formData.request,
+          anonymous: isAnonymous,
+          honey: formData.honey,
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      if (response.ok && result.success) {
         setStatus('success');
         setMessage(
           'Your prayer request has been received. Our prayer team will lift you up in prayer. May God meet you right where you are.'
         );
-        setFormData({ name: '', email: '', request: '' });
+        setFormData({ name: '', email: '', request: '', honey: '' });
         setIsAnonymous(false);
       } else {
         setStatus('error');
-        setMessage('Something went wrong. Please try again or email us directly.');
+        setMessage(result.error || 'Something went wrong. Please try again or email us directly.');
       }
     } catch {
       setStatus('error');
@@ -78,6 +80,7 @@ export function PrayerRequestForm() {
     <form
       onSubmit={handleSubmit}
       className="space-y-6 rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-glow sm:p-10"
+      aria-live="polite"
     >
       {status !== 'idle' && (
         <div className="mb-2">
@@ -85,12 +88,24 @@ export function PrayerRequestForm() {
         </div>
       )}
 
+      <input
+        type="text"
+        name="honey"
+        value={formData.honey}
+        onChange={handleChange}
+        autoComplete="off"
+        tabIndex={-1}
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+
       <div className="flex items-center gap-3">
         <button
           type="button"
           role="switch"
           aria-checked={isAnonymous}
-          onClick={() => setIsAnonymous(!isAnonymous)}
+          aria-label="Submit anonymously"
+          onClick={() => setIsAnonymous((current) => !current)}
           className={`relative inline-flex h-6 w-11 items-center rounded-full border transition ${
             isAnonymous ? 'border-gold bg-gold/20' : 'border-slate-200 bg-slate-50'
           }`}

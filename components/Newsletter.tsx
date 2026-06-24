@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { FormFeedback } from './FormFeedback';
-import { CONTACT_EMAIL } from '../lib/constants';
 
 export function Newsletter() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
+  const [honey, setHoney] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,23 +22,21 @@ export function Newsletter() {
     setMessage('Subscribing...');
 
     try {
-      const response = await fetch(`https://formsubmit.co/${CONTACT_EMAIL}`, {
+      const response = await fetch('/api/newsletter', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          email,
-          _subject: 'New Newsletter Subscription — TBC Ministries',
-          _captcha: 'false',
-        }).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, honey }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      if (response.ok && result.success) {
         setStatus('success');
         setMessage('Welcome to the TBC community! Check your inbox for a confirmation.');
         setEmail('');
+        setHoney('');
       } else {
         setStatus('error');
-        setMessage('Something went wrong. Please try again.');
+        setMessage(result.error || 'Something went wrong. Please try again.');
       }
     } catch {
       setStatus('error');
@@ -50,6 +48,7 @@ export function Newsletter() {
     <section
       id="newsletter"
       className="rounded-[2rem] border border-slate-200 bg-white/95 p-8 shadow-glow sm:p-10"
+      aria-live="polite"
     >
       <div className="space-y-4">
         <p className="text-xs uppercase tracking-[0.35em] text-gold/70">Stay Connected</p>
@@ -64,6 +63,16 @@ export function Newsletter() {
 
       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">
         <input
+          type="text"
+          name="honey"
+          value={honey}
+          onChange={(e) => setHoney(e.target.value)}
+          autoComplete="off"
+          tabIndex={-1}
+          aria-hidden="true"
+          className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        />
+        <input
           type="email"
           name="email"
           value={email}
@@ -72,6 +81,7 @@ export function Newsletter() {
           required
           placeholder="your@email.com"
           aria-label="Email address for newsletter"
+          aria-invalid={status === 'error' && !email.trim()}
           className="min-w-0 flex-1 rounded-full border border-slate-200 bg-slate-50 px-5 py-4 text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-gold focus:ring-4 focus:ring-gold/10 disabled:opacity-50"
         />
         <button

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { FormFeedback } from './FormFeedback';
-import { CONTACT_EMAIL } from '../lib/constants';
 
 export function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -12,12 +11,14 @@ export function ContactForm() {
     email: '',
     subject: '',
     body: '',
+    honey: '',
   });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((current) => ({ ...current, [name]: value }));
   };
 
   const validate = () => {
@@ -47,28 +48,28 @@ export function ContactForm() {
     setMessage('Sending your message...');
 
     try {
-      const response = await fetch(`https://formsubmit.co/${CONTACT_EMAIL}`, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          subject: formData.subject || 'Ministry Inquiry',
+          subject: formData.subject,
           message: formData.body,
-          _subject: `New Contact: ${formData.subject || 'Ministry Inquiry'} — TBC`,
-          _captcha: 'false',
-        }).toString(),
+          honey: formData.honey,
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      if (response.ok && result.success) {
         setStatus('success');
         setMessage(
           'Thank you! Your message has been sent. Our team will respond within 1–2 business days.'
         );
-        setFormData({ name: '', email: '', subject: '', body: '' });
+        setFormData({ name: '', email: '', subject: '', body: '', honey: '' });
       } else {
         setStatus('error');
-        setMessage('Failed to send. Please try again or email us directly.');
+        setMessage(result.error || 'Failed to send. Please try again or email us directly.');
       }
     } catch {
       setStatus('error');
@@ -84,12 +85,26 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit}
       className="space-y-6 rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-glow sm:p-10"
+      aria-live="polite"
     >
       {status !== 'idle' && <FormFeedback status={status} message={message} />}
 
+      <input
+        type="text"
+        name="honey"
+        value={formData.honey}
+        onChange={handleChange}
+        autoComplete="off"
+        tabIndex={-1}
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
-          <label className={labelClass} htmlFor="contact-name">Name</label>
+          <label className={labelClass} htmlFor="contact-name">
+            Name
+          </label>
           <input
             id="contact-name"
             name="name"
@@ -98,11 +113,14 @@ export function ContactForm() {
             onChange={handleChange}
             disabled={status === 'loading'}
             placeholder="Your full name"
+            aria-invalid={status === 'error' && !formData.name.trim()}
             className={fieldClass}
           />
         </div>
         <div>
-          <label className={labelClass} htmlFor="contact-email">Email</label>
+          <label className={labelClass} htmlFor="contact-email">
+            Email
+          </label>
           <input
             id="contact-email"
             name="email"
@@ -112,13 +130,16 @@ export function ContactForm() {
             onChange={handleChange}
             disabled={status === 'loading'}
             placeholder="your@email.com"
+            aria-invalid={status === 'error' && !formData.email.includes('@')}
             className={fieldClass}
           />
         </div>
       </div>
 
       <div>
-        <label className={labelClass} htmlFor="contact-subject">Subject</label>
+        <label className={labelClass} htmlFor="contact-subject">
+          Subject
+        </label>
         <select
           id="contact-subject"
           name="subject"
@@ -139,7 +160,9 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className={labelClass} htmlFor="contact-body">Message</label>
+        <label className={labelClass} htmlFor="contact-body">
+          Message
+        </label>
         <textarea
           id="contact-body"
           name="body"
@@ -149,6 +172,7 @@ export function ContactForm() {
           onChange={handleChange}
           disabled={status === 'loading'}
           placeholder="Share your inquiry, prayer need, or ministry interest..."
+          aria-invalid={status === 'error' && !formData.body.trim()}
           className={fieldClass}
         />
       </div>

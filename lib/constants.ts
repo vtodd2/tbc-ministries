@@ -1,11 +1,12 @@
 export const SITE_NAME = 'Transformed Believers Church';
 export const SITE_SHORT_NAME = 'TBC Ministries';
 export const SITE_TAGLINE = 'Transformed by Grace. Built for Purpose.';
-export const SITE_URL = 'https://www.transformedbelieverschurch.org';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.transformedbelieverschurch.org';
 export const SITE_DESCRIPTION =
   'Transformed Believers Church — a luxury Christian ministry rooted in biblical truth, Spirit-led worship, and the transforming power of God\'s word.';
 
-export const CONTACT_EMAIL = 'hello@transformedbelieverschurch.org';
+export const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'hello@transformedbelieverschurch.org';
 export const CONTACT_PHONE = '+1 (555) 014-0825';
 export const CONTACT_ADDRESS = '1200 Horizon Ave, Suite 205, Atlanta, GA 30301';
 
