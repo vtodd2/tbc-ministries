@@ -3,7 +3,7 @@ export const siteConfig = {
   description:
     "Transformed Believers Church — a luxury ministry for revival, discipleship, and generous living.",
   url: "http://localhost:3000",
-  email: "hello@transformedbelievers.org",
+  email: "admin@tbcministries-us.org",
   social: {
     twitter: "@TransformedBC",
   },

@@ -1,10 +1,14 @@
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type ValidationResult<T> =
+  | { valid: true; data: T }
+  | { valid: false; error: string };
+
 const normalize = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
-const buildErrorResponse = (message: string) => ({ valid: false, error: message });
+const buildErrorResponse = (message: string): ValidationResult<never> => ({ valid: false, error: message });
 
-export function validateContactForm(payload: unknown) {
+export function validateContactForm(payload: unknown): ValidationResult<{ name: string; email: string; subject: string; message: string }> {
   if (!payload || typeof payload !== 'object') {
     return buildErrorResponse('Invalid request body.');
   }
@@ -34,7 +38,7 @@ export function validateContactForm(payload: unknown) {
   return { valid: true, data: { name: normalize(name), email: normalize(email), subject: normalize(subject) || 'Ministry Inquiry', message: normalize(message) } };
 }
 
-export function validatePrayerForm(payload: unknown) {
+export function validatePrayerForm(payload: unknown): ValidationResult<{ name: string; email: string; message: string }> {
   if (!payload || typeof payload !== 'object') {
     return buildErrorResponse('Invalid request body.');
   }
@@ -69,7 +73,7 @@ export function validatePrayerForm(payload: unknown) {
   };
 }
 
-export function validateNewsletterForm(payload: unknown) {
+export function validateNewsletterForm(payload: unknown): ValidationResult<{ email: string }> {
   if (!payload || typeof payload !== 'object') {
     return buildErrorResponse('Invalid request body.');
   }

@@ -6,14 +6,14 @@ export const SITE_DESCRIPTION =
   'Transformed Believers Church — a luxury Christian ministry rooted in biblical truth, Spirit-led worship, and the transforming power of God\'s word.';
 
 export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'hello@transformedbelieverschurch.org';
-export const CONTACT_PHONE = '+1 (555) 014-0825';
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'admin@tbcministries-us.org';
+export const CONTACT_PHONE = '601-376-9496';
 export const CONTACT_ADDRESS = '1200 Horizon Ave, Suite 205, Atlanta, GA 30301';
 
 export const SOCIAL = {
-  facebook: 'https://facebook.com/transformedbelieverschurch',
-  instagram: 'https://instagram.com/transformedbelieverschurch',
-  youtube: 'https://youtube.com/transformedbelieverschurch',
+  facebook: 'https://www.facebook.com/profile.php?id=61592057720376',
+  instagram: 'https://www.instagram.com/transformedbelievers/',
+  youtube: 'https://www.youtube.com/@tbcministries-us',
   twitter: 'https://twitter.com/transformedbc',
   spotify: 'https://open.spotify.com/show/transformedbelieverschurch',
   apple: 'https://podcasts.apple.com/podcast/transformedbelieverschurch',

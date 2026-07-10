@@ -47,7 +47,7 @@ export default function LivestreamPage() {
           {/* YouTube Live embed — replace CHANNEL_ID with your actual YouTube channel ID */}
           <div className="relative aspect-video w-full overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-100">
             <iframe
-              src="https://www.youtube.com/embed/live_stream?channel=UCxxxxxxxxxxxxxxxx&autoplay=0&rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/live_stream?channel=UC1APxD82SPkCevjJiQfgeOg&autoplay=0&rel=0&modestbranding=1"
               title="TBC Live Worship Service"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -63,7 +63,7 @@ export default function LivestreamPage() {
             </div>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="https://www.youtube.com/transformedbelieverschurch"
+                href="https://www.youtube.com/@tbcministries-us"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-red-500/40 bg-red-500/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-red-400 transition hover:bg-red-500/15"
