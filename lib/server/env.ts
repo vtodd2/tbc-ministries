@@ -17,3 +17,9 @@ export const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS ?? 6
 export const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS ?? 6);
 
 export const requireAdminApiToken = () => requiredEnv('ADMIN_API_TOKEN');
+
+export const STRIPE_SECRET_KEY = requiredEnv('STRIPE_SECRET_KEY');
+export const PAYPAL_CLIENT_ID = requiredEnv('PAYPAL_CLIENT_ID');
+export const PAYPAL_CLIENT_SECRET = requiredEnv('PAYPAL_CLIENT_SECRET');
+export const PAYPAL_API_BASE =
+  process.env.PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';

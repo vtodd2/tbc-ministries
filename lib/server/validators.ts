@@ -90,3 +90,21 @@ export function validateNewsletterForm(payload: unknown): ValidationResult<{ ema
 
   return { valid: true, data: { email: normalize(email) } };
 }
+
+export function validateDonationRequest(payload: unknown): ValidationResult<{ amount: number; recurring: boolean }> {
+  if (!payload || typeof payload !== 'object') {
+    return buildErrorResponse('Invalid request body.');
+  }
+
+  const { amount, recurring } = payload as Record<string, unknown>;
+  const parsedAmount = typeof amount === 'number' ? amount : Number(amount);
+
+  if (!Number.isFinite(parsedAmount) || parsedAmount < 1 || parsedAmount > 100000) {
+    return buildErrorResponse('Please enter a donation amount between $1 and $100,000.');
+  }
+
+  return {
+    valid: true,
+    data: { amount: Math.round(parsedAmount * 100) / 100, recurring: recurring === true },
+  };
+}

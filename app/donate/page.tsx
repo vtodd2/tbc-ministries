@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SectionHeader } from '../../components/SectionHeader';
+import { CustomAmountGiving, DonationButtons, MonthlyGiving } from '../../components/DonationButtons';
 import type { DonationTier } from '../../types';
 
 export const metadata: Metadata = {
@@ -37,7 +38,13 @@ const tiers: DonationTier[] = [
   },
 ];
 
-export default function DonatePage() {
+export default function DonatePage({
+  searchParams,
+}: {
+  searchParams: { status?: string; method?: string };
+}) {
+  const status = searchParams?.status;
+
   return (
     <>
       <section className="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-12">
@@ -45,6 +52,22 @@ export default function DonatePage() {
           title="Give"
           subtitle="Your generosity transforms lives and advances God's kingdom."
         />
+
+        {status === 'success' && (
+          <div className="mt-8 rounded-[1.5rem] border border-emerald-400/30 bg-emerald-400/10 p-5 text-center text-sm font-medium text-emerald-700">
+            Thank you for your gift! A confirmation has been sent to your email.
+          </div>
+        )}
+        {status === 'cancelled' && (
+          <div className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-100 p-5 text-center text-sm font-medium text-slate-700">
+            Your donation was cancelled. No charge was made.
+          </div>
+        )}
+        {status === 'error' && (
+          <div className="mt-8 rounded-[1.5rem] border border-red-400/30 bg-red-400/10 p-5 text-center text-sm font-medium text-red-700">
+            Something went wrong processing your gift. Please try again or contact us.
+          </div>
+        )}
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           {/* Giving tiers */}
@@ -82,22 +105,7 @@ export default function DonatePage() {
                     </div>
                     <p className="mt-4 text-sm leading-6 text-slate-700">{tier.description}</p>
 
-                    {/* Stripe placeholder */}
-                    <button
-                      type="button"
-                      className="mt-5 w-full rounded-full bg-gold py-3 text-xs font-semibold uppercase tracking-[0.25em] text-black transition hover:bg-gold-light"
-                      aria-label={`Give ${tier.value} — Stripe payment`}
-                    >
-                      Give {tier.value} — Stripe
-                    </button>
-                    {/* PayPal placeholder */}
-                    <button
-                      type="button"
-                      className="mt-2 w-full rounded-full border border-slate-200 bg-[#003087]/20 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#009cde] transition hover:border-[#009cde]/40"
-                      aria-label={`Give ${tier.value} — PayPal`}
-                    >
-                      Give {tier.value} — PayPal
-                    </button>
+                    <DonationButtons amount={Number(tier.value.replace(/[^0-9.]/g, ''))} label={tier.value} />
                   </div>
                 ))}
               </div>
@@ -105,22 +113,8 @@ export default function DonatePage() {
               {/* Custom amount */}
               <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-100 p-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/70">Custom Amount</p>
-                <div className="mt-4 flex gap-3">
-                  <div className="relative flex-1">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600">$</span>
-                    <input
-                      type="number"
-                      min="1"
-                      placeholder="Enter amount"
-                      className="w-full rounded-full border border-slate-200 bg-white/95 py-3 pl-8 pr-5 text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-gold focus:ring-4 focus:ring-gold/10"
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    className="rounded-full bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-gold-light"
-                  >
-                    Give
-                  </button>
+                <div className="mt-4">
+                  <CustomAmountGiving />
                 </div>
               </div>
             </div>
@@ -133,23 +127,9 @@ export default function DonatePage() {
                 Monthly partners form the backbone of TBC&apos;s ministry. Your recurring gift
                 enables us to plan, build, and sustain programs that transform lives year-round.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {['$25/mo', '$50/mo', '$100/mo', '$250/mo'].map((amt) => (
-                  <button
-                    key={amt}
-                    type="button"
-                    className="rounded-full border border-gold/30 bg-gold/8 px-4 py-2 text-xs font-semibold text-gold transition hover:bg-gold/15"
-                  >
-                    {amt}
-                  </button>
-                ))}
+              <div className="mt-6">
+                <MonthlyGiving />
               </div>
-              <button
-                type="button"
-                className="mt-6 w-full rounded-full bg-gold py-3 text-xs font-semibold uppercase tracking-[0.25em] text-black transition hover:bg-gold-light"
-              >
-                Set Up Monthly Giving
-              </button>
             </div>
           </div>
 
@@ -180,7 +160,7 @@ export default function DonatePage() {
               <div className="mt-5 space-y-4 text-sm leading-6 text-slate-700">
                 <div>
                   <p className="font-semibold text-slate-950">Check / Money Order</p>
-                  <p className="mt-1">Mail to: 1200 Horizon Ave, Suite 205, Atlanta, GA 30301</p>
+                  <p className="mt-1">Mail to: 3700 Preston Rd Suite 1522, Plano, TX 75093</p>
                   <p>Payable to: Transformed Believers Church</p>
                 </div>
                 <div>
