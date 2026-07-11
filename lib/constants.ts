@@ -7,8 +7,8 @@ export const SITE_DESCRIPTION =
 
 export const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'admin@tbcministries-us.org';
-export const CONTACT_PHONE = '601-376-9496';
-export const CONTACT_ADDRESS = '1200 Horizon Ave, Suite 205, Atlanta, GA 30301';
+export const CONTACT_PHONE = '940-290-2143';
+export const CONTACT_ADDRESS = '3700 Preston Rd Suite 1522, Plano, TX 75093';
 
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/profile.php?id=61592057720376',

@@ -17,7 +17,7 @@ const events: CommunityEvent[] = [
     description: 'Our weekly gathering for Spirit-led worship, powerful preaching, and authentic community.',
     date: 'Every Sunday',
     time: '10:00 AM & 12:00 PM',
-    location: '1200 Horizon Ave, Atlanta, GA',
+    location: '3700 Preston Rd Suite 1522, Plano, TX 75093',
     isOnline: true,
   },
   {
@@ -26,7 +26,7 @@ const events: CommunityEvent[] = [
     description: 'A deep dive into Scripture every Wednesday. Open to all who want to grow in the Word.',
     date: 'Every Wednesday',
     time: '7:00 PM',
-    location: '1200 Horizon Ave, Atlanta, GA',
+    location: '3700 Preston Rd Suite 1522, Plano, TX 75093',
     isOnline: true,
   },
   {

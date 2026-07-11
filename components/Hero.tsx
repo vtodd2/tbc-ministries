@@ -121,7 +121,7 @@ export function Hero() {
               <div className="rounded-[1.5rem] border border-gold/20 bg-gold/5 p-5">
                 <p className="text-xs uppercase tracking-[0.3em] text-gold/70">Next Service</p>
                 <p className="mt-2 font-semibold text-slate-950">Sunday, 10:00 AM & 12:00 PM</p>
-                <p className="mt-1 text-sm text-slate-600">1200 Horizon Ave, Atlanta, GA · Also streaming live</p>
+                <p className="mt-1 text-sm text-slate-600">3700 Preston Rd Suite 1522, Plano, TX 75093 · Also streaming live</p>
               </div>
             </motion.div>
           </div>

@@ -86,15 +86,15 @@ npm run export
 
 ### 3. Social Links Verification
 Update these URLs if they're not correct in `components/SocialLinks.tsx`:
-- Facebook: `https://www.facebook.com/kingdomlightministry`
-- Instagram: `https://www.instagram.com/kingdomlightministry`
-- YouTube: `https://www.youtube.com/@kingdomlightministry`
+- Facebook: `https://www.facebook.com/profile.php?id=61592057720376`
+- Instagram: `https://www.instagram.com/transformedbelievers/`
+- YouTube: `https://www.youtube.com/@tbcministries-us`
 
 ### 4. Contact Information
 Verify these in `app/contact/page.tsx`:
-- Email: `hello@kingdomlightministry.org`
-- Phone: `+1 (555) 014-0825`
-- Address: Update if needed
+- Email: `hello@transformedbelieverschurch.org`
+- Phone: `+1 (940) 290-2143`
+- Address: `3700 Preston Rd Suite 1522, Plano, TX 75093`
 
 ### 5. Deployment Options
 

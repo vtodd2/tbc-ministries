@@ -54,7 +54,7 @@ npm run export
 Create `.env.local`:
 
 ```env
-NEXT_PUBLIC_FORM_EMAIL=hello@kingdomlightministry.org
+NEXT_PUBLIC_FORM_EMAIL=hello@transformedbelieverschurch.org
 ```
 
 ### Update Important Information
@@ -179,4 +179,5 @@ For updates or issues, check the [DEPLOYMENT.md](./DEPLOYMENT.md) guide.
 
 ## 📄 License
 
-© 2026 Kingdom Light Ministry. All rights reserved.
+© 2026 Transformed Believers Church. All rights reserved.
+
