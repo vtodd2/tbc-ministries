@@ -118,8 +118,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            {/* Replace dQw4w9WgXcQ with your actual YouTube video ID */}
-            <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Renewed Mind, Transformed Life — TBC Sermon" />
+            <YouTubeEmbed videoId="" title="Renewed Mind, Transformed Life — TBC Sermon" />
           </div>
         </div>
       </section>

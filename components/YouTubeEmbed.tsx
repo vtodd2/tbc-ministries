@@ -17,6 +17,16 @@ export function YouTubeEmbed({
     ...(autoplay ? { autoplay: '1' } : {}),
   });
 
+  if (!videoId) {
+    return (
+      <div
+        className={`relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-100 ${className}`}
+      >
+        <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Video Coming Soon</p>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`relative aspect-video w-full overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 ${className}`}

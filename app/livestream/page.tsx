@@ -18,9 +18,9 @@ const schedule = [
 ];
 
 const pastStreams = [
-  { title: 'Renewed Mind, Transformed Life', date: 'June 15, 2025', youtubeId: 'dQw4w9WgXcQ' },
-  { title: 'Walking in Your God-Given Purpose', date: 'June 8, 2025', youtubeId: 'dQw4w9WgXcQ' },
-  { title: 'The Power of Authentic Worship', date: 'June 1, 2025', youtubeId: 'dQw4w9WgXcQ' },
+  { title: 'Renewed Mind, Transformed Life', date: 'June 15, 2025', youtubeId: '' },
+  { title: 'Walking in Your God-Given Purpose', date: 'June 8, 2025', youtubeId: '' },
+  { title: 'The Power of Authentic Worship', date: 'June 1, 2025', youtubeId: '' },
 ];
 
 export default function LivestreamPage() {
