@@ -1,4 +1,4 @@
-import { FORM_EMAIL } from './env';
+import { getFormEmail } from './env';
 
 export async function submitFormSubmit(data: Record<string, string>) {
   const formBody = new URLSearchParams({
@@ -6,7 +6,7 @@ export async function submitFormSubmit(data: Record<string, string>) {
     _captcha: 'false',
   });
 
-  return fetch(`https://formsubmit.co/${FORM_EMAIL}`, {
+  return fetch(`https://formsubmit.co/${getFormEmail()}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',

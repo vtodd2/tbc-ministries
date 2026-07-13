@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { consumeRateLimit, getClientIp } from '../../../../lib/server/rate-limit';
 import { validateDonationRequest } from '../../../../lib/server/validators';
 import { ALLOWED_ORIGINS, APP_URL } from '../../../../lib/server/env';
-import { stripe } from '../../../../lib/server/stripe';
+import { getStripe } from '../../../../lib/server/stripe';
 
 const isAllowedOrigin = (origin: string | null) => {
   if (!origin) return true;
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   const siteUrl = origin ?? APP_URL;
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: recurring ? 'subscription' : 'payment',
       payment_method_types: ['card'],
       line_items: [

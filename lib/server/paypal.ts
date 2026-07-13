@@ -1,7 +1,7 @@
-import { PAYPAL_API_BASE, PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } from './env';
+import { PAYPAL_API_BASE, getPaypalClientId, getPaypalClientSecret } from './env';
 
 async function getAccessToken() {
-  const credentials = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64');
+  const credentials = Buffer.from(`${getPaypalClientId()}:${getPaypalClientSecret()}`).toString('base64');
 
   const response = await fetch(`${PAYPAL_API_BASE}/v1/oauth2/token`, {
     method: 'POST',
