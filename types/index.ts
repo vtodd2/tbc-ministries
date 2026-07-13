@@ -32,6 +32,8 @@ export interface Book {
   format?: string[];
   stripeUrl?: string;
   paypalUrl?: string;
+  ebookUrl?: string;
+  coverImage?: string;
 }
 
 export interface PodcastEpisode {
@@ -54,6 +56,8 @@ export interface DonationTier {
   impact?: string;
   stripeUrl?: string;
   paypalUrl?: string;
+  ebookUrl?: string;
+  coverImage?: string;
 }
 
 export interface PrayerRequest {

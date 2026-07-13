@@ -217,15 +217,18 @@ export default function HomePage() {
             <div className="space-y-6">
               <p className="text-xs uppercase tracking-[0.35em] text-gold/70">Featured Book</p>
               <h2 className="text-4xl font-semibold text-slate-950 sm:text-5xl">
-                Transformed: A Journey of Faith and Purpose
+                Breaking Spiritual Curses
               </h2>
+              <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+                Spiritual Freedom For You and The Generations After You — by V. Lydell Todd
+              </p>
               <p className="leading-8 text-slate-700">
-                A 30-day devotional journey through the scriptures that shaped the TBC community
-                — daily readings, prayer prompts, and reflections designed to ignite transformation
-                in every area of your life.
+                Biblical insight, prayer, and practical steps toward freedom through Jesus Christ —
+                identify spiritual bondage, experience healing, and break destructive cycles while
+                leaving a legacy of faith for future generations.
               </p>
               <div className="flex items-center gap-4">
-                <span className="text-3xl font-semibold text-slate-950">$24.99</span>
+                <span className="text-3xl font-semibold text-slate-950">$14.99</span>
                 <span className="rounded-full border border-gold/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-gold">
                   Print & Digital
                 </span>
@@ -246,13 +249,11 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="aspect-[3/4] rounded-[1.75rem] border border-gold/20 bg-gradient-to-br from-gold/10 to-black/60 flex items-center justify-center">
-                <div className="text-center space-y-2 p-8">
-                  <div className="text-4xl text-gold/40">✦</div>
-                  <p className="text-sm uppercase tracking-[0.3em] text-gold/50">Book Cover</p>
-                  <p className="text-xs text-slate-500">Image Coming Soon</p>
-                </div>
-              </div>
+              <img
+                src="/images/books/breaking-spiritual-curses.jpg"
+                alt="Breaking Spiritual Curses — book cover"
+                className="aspect-[2/3] w-full rounded-[1.75rem] border border-gold/20 object-cover shadow-glow"
+              />
             </div>
           </div>
         </div>

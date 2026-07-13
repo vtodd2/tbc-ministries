@@ -12,43 +12,29 @@ export const metadata: Metadata = {
 const books: Book[] = [
   {
     id: '1',
-    title: 'Transformed: A Journey of Faith and Purpose',
+    title: 'Breaking Spiritual Curses: Spiritual Freedom For You and The Generations After You',
     description:
-      'A 30-day devotional journey through the scriptures that ignited the TBC movement. Daily readings, prayer prompts, and transformation reflections for every believer.',
-    price: '$24.99',
+      'Breaking Spiritual Curses addresses the spiritual strongholds and generational patterns that can hinder believers from walking in God\'s purpose. Drawing from Scripture and personal experience, V. Lydell Todd offers biblical insight, prayer, and practical steps toward freedom through Jesus Christ. This powerful resource helps readers identify spiritual bondage, experience healing, and embrace God\'s restoration — breaking destructive cycles and leaving a legacy of faith for future generations.',
+    price: '$14.99',
     badge: 'Bestseller',
     available: true,
-    format: ['Hardcover', 'Paperback', 'eBook'],
+    format: ['Paperback', 'eBook'],
+    paypalUrl: 'https://www.paypal.com/ncp/payment/EFPUEXUCXTBLW',
+    ebookUrl: 'https://toddgroupofms.gumroad.com/l/zmfap',
+    coverImage: '/images/books/breaking-spiritual-curses.jpg',
   },
   {
     id: '2',
-    title: 'Living in the Kingdom: A Christ-Centered Life',
+    title: 'The Stairway to Heaven Headed to Hell: The False Teachings Of The Church',
     description:
-      'A deep exploration of what it means to live as a citizen of God\'s kingdom in a modern world — practical, biblical, and life-changing.',
+      'The Stairway to Heaven Headed to Hell is a bold call to examine faith through the lens of Scripture rather than tradition. Drawing on years of personal trials and biblical study, V. Lydell Todd challenges readers to test long-held beliefs and consider whether religious customs align with God\'s Word. Addressing topics such as tradition, worship, and salvation, this book encourages believers to seek truth with humility, courage, and discernment — an invitation to move beyond religious routine and pursue a deeper walk of obedience, faith, and freedom in Christ.',
     price: '$19.99',
     badge: 'New Release',
     available: true,
-    format: ['Paperback', 'eBook', 'Audiobook'],
-  },
-  {
-    id: '3',
-    title: 'Prayer That Transforms: 30 Days with God',
-    description:
-      'A guided prayer journal that teaches believers how to pray with authority, consistency, and faith. Perfect for individuals and small groups.',
-    price: '$14.99',
-    badge: 'Top Pick',
-    available: true,
     format: ['Paperback', 'eBook'],
-  },
-  {
-    id: '4',
-    title: 'The Grace Principle: God\'s Unending Love',
-    description:
-      'A theological yet accessible study of God\'s grace — what it is, what it does, and how receiving it fully changes everything about the way you live.',
-    price: '$22.99',
-    badge: 'Study Guide',
-    available: true,
-    format: ['Hardcover', 'Paperback', 'eBook'],
+    paypalUrl: 'https://www.paypal.com/ncp/payment/SZBH4ZX7GFZF4',
+    ebookUrl: 'https://toddgroupofms.gumroad.com/l/mhkmd',
+    coverImage: '/images/books/stairway-to-heaven-headed-to-hell.jpg',
   },
 ];
 
@@ -67,16 +53,27 @@ export default function BooksPage() {
               key={book.id}
               className="flex flex-col rounded-[2rem] border border-slate-200 bg-slate-50 p-8 transition hover:border-gold/25 hover:bg-slate-100"
             >
-              <div className="flex items-start justify-between gap-4">
-                <h2 className="text-xl font-semibold text-slate-950">{book.title}</h2>
-                {book.badge && (
-                  <span className="shrink-0 rounded-full bg-gold/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-gold">
-                    {book.badge}
-                  </span>
+              <div className="flex flex-col gap-6 sm:flex-row">
+                {book.coverImage && (
+                  <img
+                    src={book.coverImage}
+                    alt={`${book.title} — book cover`}
+                    className="mx-auto w-44 shrink-0 rounded-xl border border-gold/20 shadow-glow sm:mx-0"
+                  />
                 )}
+                <div className="flex flex-col">
+                  <div className="flex items-start justify-between gap-4">
+                    <h2 className="text-xl font-semibold text-slate-950">{book.title}</h2>
+                    {book.badge && (
+                      <span className="shrink-0 rounded-full bg-gold/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-gold">
+                        {book.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-2 text-sm text-slate-500">by V. Lydell Todd</p>
+                  <p className="mt-4 flex-1 text-sm leading-7 text-slate-700">{book.description}</p>
+                </div>
               </div>
-
-              <p className="mt-4 flex-1 text-sm leading-7 text-slate-700">{book.description}</p>
 
               <div className="mt-6 space-y-5">
                 <div className="flex flex-wrap items-center gap-3">
@@ -92,27 +89,28 @@ export default function BooksPage() {
                 </div>
 
                 <div className="grid gap-2 sm:grid-cols-2">
-                  {/* Stripe placeholder */}
-                  <button
-                    type="button"
-                    className="flex items-center justify-center gap-2 rounded-full bg-gold py-3 text-xs font-semibold uppercase tracking-[0.22em] text-black transition hover:bg-gold-light"
-                    aria-label={`Buy ${book.title} with card`}
-                  >
-                    <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
-                    </svg>
-                    Buy with Card
-                  </button>
-
-                  {/* PayPal placeholder */}
-                  <button
-                    type="button"
-                    className="flex items-center justify-center gap-2 rounded-full border border-[#009cde]/30 bg-[#003087]/15 py-3 text-xs font-semibold tracking-[0.15em] text-[#009cde] transition hover:border-[#009cde]/50 hover:bg-[#003087]/25"
-                    aria-label={`Buy ${book.title} with PayPal`}
-                  >
-                    <span className="font-bold text-[#003087] dark:text-[#009cde]">Pay</span>
-                    <span className="font-bold text-[#009cde]">Pal</span>
-                  </button>
+                  {book.paypalUrl && (
+                    <a
+                      href={book.paypalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 rounded-full bg-gold py-3 text-xs font-semibold uppercase tracking-[0.22em] text-black transition hover:bg-gold-light"
+                      aria-label={`Buy ${book.title} paperback with PayPal`}
+                    >
+                      Buy Paperback
+                    </a>
+                  )}
+                  {book.ebookUrl && (
+                    <a
+                      href={book.ebookUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 rounded-full border border-gold/30 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-gold transition hover:border-gold hover:bg-gold/10"
+                      aria-label={`Buy ${book.title} eBook`}
+                    >
+                      Buy eBook
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
