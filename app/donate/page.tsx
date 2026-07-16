@@ -33,7 +33,7 @@ const tiers: DonationTier[] = [
   {
     label: 'Legacy',
     value: '$500',
-    description: 'Transforms generations — funds long-term missions, building projects, and media ministry expansion.',
+    description: 'Transforms generations — funds long-term missions, mentorship ministry, and media ministry.',
     impact: 'Generational impact',
   },
 ];
