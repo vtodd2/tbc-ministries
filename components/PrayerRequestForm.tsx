@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FormFeedback } from './FormFeedback';
+import { sendViaFormSubmit } from '../lib/formsubmit-client';
 
 export function PrayerRequestForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -46,20 +47,15 @@ export function PrayerRequestForm() {
     setMessage('Submitting your prayer request...');
 
     try {
-      const response = await fetch('/api/prayer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          request: formData.request,
-          anonymous: isAnonymous,
-          honey: formData.honey,
-        }),
+      if (formData.honey) return;
+      const { ok } = await sendViaFormSubmit({
+        name: isAnonymous ? 'Anonymous' : formData.name,
+        email: isAnonymous ? 'anonymous@tbcministries-us.org' : formData.email,
+        message: formData.request,
+        _subject: 'New Prayer Request — Transformed Believers Church',
       });
 
-      const result = await response.json();
-      if (response.ok && result.success) {
+      if (ok) {
         setStatus('success');
         setMessage(
           'Your prayer request has been received. Our prayer team will lift you up in prayer. May God meet you right where you are.'
@@ -68,7 +64,7 @@ export function PrayerRequestForm() {
         setIsAnonymous(false);
       } else {
         setStatus('error');
-        setMessage(result.error || 'Something went wrong. Please try again or email us directly.');
+        setMessage('Something went wrong. Please try again or email us directly.');
       }
     } catch {
       setStatus('error');

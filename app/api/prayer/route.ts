@@ -38,9 +38,8 @@ export async function POST(req: Request) {
   });
 
   if (!response.ok) {
-    const detail = await response.text().catch(() => '');
     return NextResponse.json(
-      { error: `Unable to send prayer request (${response.status}): ${detail.slice(0, 300)}` },
+      { error: 'Unable to send prayer request at this time. Please try again later.' },
       { status: 502 }
     );
   }

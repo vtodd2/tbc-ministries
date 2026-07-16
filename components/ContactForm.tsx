@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FormFeedback } from './FormFeedback';
+import { sendViaFormSubmit } from '../lib/formsubmit-client';
 
 export function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -48,20 +49,16 @@ export function ContactForm() {
     setMessage('Sending your message...');
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.body,
-          honey: formData.honey,
-        }),
+      if (formData.honey) return;
+      const { ok } = await sendViaFormSubmit({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.body,
+        _subject: `Contact Form — ${formData.subject || 'Transformed Believers Church'}`,
       });
 
-      const result = await response.json();
-      if (response.ok && result.success) {
+      if (ok) {
         setStatus('success');
         setMessage(
           'Thank you! Your message has been sent. Our team will respond within 1–2 business days.'
@@ -69,7 +66,7 @@ export function ContactForm() {
         setFormData({ name: '', email: '', subject: '', body: '', honey: '' });
       } else {
         setStatus('error');
-        setMessage(result.error || 'Failed to send. Please try again or email us directly.');
+        setMessage('Failed to send. Please try again or email us directly.');
       }
     } catch {
       setStatus('error');

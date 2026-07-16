@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FormFeedback } from './FormFeedback';
+import { sendViaFormSubmit } from '../lib/formsubmit-client';
 
 export function Newsletter() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -22,21 +23,20 @@ export function Newsletter() {
     setMessage('Subscribing...');
 
     try {
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, honey }),
+      if (honey) return;
+      const { ok } = await sendViaFormSubmit({
+        email,
+        _subject: 'New Newsletter Signup — Transformed Believers Church',
       });
 
-      const result = await response.json();
-      if (response.ok && result.success) {
+      if (ok) {
         setStatus('success');
         setMessage('Welcome to the TBC community! Check your inbox for a confirmation.');
         setEmail('');
         setHoney('');
       } else {
         setStatus('error');
-        setMessage(result.error || 'Something went wrong. Please try again.');
+        setMessage('Something went wrong. Please try again.');
       }
     } catch {
       setStatus('error');
