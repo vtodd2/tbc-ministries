@@ -140,6 +140,57 @@ export default function BooksPage() {
           ))}
         </div>
 
+
+        {/* Three-Book Bundle */}
+        <div className="mt-14 rounded-[2rem] border border-gold/25 bg-gradient-to-br from-black/90 to-white/3 p-10 shadow-glow sm:p-12">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="flex items-center justify-center gap-3">
+              <img
+                src="/images/books/breaking-spiritual-curses.jpg"
+                alt="Breaking Spiritual Curses — book cover"
+                className="w-28 rounded-lg border border-gold/20 shadow-glow sm:w-32"
+              />
+              <img
+                src="/images/books/breaking-spiritual-curses-vol-2.jpg"
+                alt="Breaking Spiritual Curses Volume Two — book cover"
+                className="w-28 -translate-y-3 rounded-lg border border-gold/20 shadow-glow sm:w-32"
+              />
+              <img
+                src="/images/books/30-day-devotional.jpg"
+                alt="30-Day Devotional — book cover"
+                className="w-28 rounded-lg border border-gold/20 shadow-glow sm:w-32"
+              />
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.35em] text-gold/70">Three-Book Bundle</p>
+              <h2 className="mt-3 text-3xl font-semibold text-slate-950">
+                The Complete Breaking Spiritual Curses Collection
+              </h2>
+              <p className="mt-4 leading-7 text-slate-700">
+                Get all three paperbacks together — <em>Breaking Spiritual Curses</em>,{' '}
+                <em>Breaking Spiritual Curses Volume Two</em>, and the{' '}
+                <em>30-Day Devotional for Breaking Generational Curses and Reclaiming Identity</em> —
+                one complete journey from understanding generational bondage to walking in daily freedom.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <span className="text-3xl font-semibold text-slate-950">$24.99</span>
+                <span className="text-sm text-slate-500 line-through">$44.97</span>
+                <span className="rounded-full bg-gold/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-gold">
+                  Save $19.98
+                </span>
+              </div>
+              <a
+                href="https://www.paypal.com/ncp/payment/ZZEHYMGJYM9JQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-xs font-semibold uppercase tracking-[0.25em] text-black transition hover:bg-gold-light"
+              >
+                Buy the Bundle
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Bulk / Ministry Orders */}
         <div className="mt-14 rounded-[2rem] border border-slate-200 bg-white/95 p-10 shadow-glow">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
