@@ -81,7 +81,7 @@ export default function BooksPage() {
                   <img
                     src={book.coverImage}
                     alt={`${book.title} — book cover`}
-                    className="mx-auto w-44 shrink-0 rounded-xl border border-gold/20 shadow-glow sm:mx-0"
+                    className="mx-auto aspect-[8.5/11] w-44 shrink-0 self-start rounded-xl border border-gold/20 object-cover shadow-glow sm:mx-0"
                   />
                 )}
                 <div className="flex flex-col">
@@ -148,17 +148,17 @@ export default function BooksPage() {
               <img
                 src="/images/books/breaking-spiritual-curses.jpg"
                 alt="Breaking Spiritual Curses — book cover"
-                className="w-28 rounded-lg border border-gold/20 shadow-glow sm:w-32"
+                className="aspect-[8.5/11] w-28 rounded-lg border border-gold/20 object-cover shadow-glow sm:w-32"
               />
               <img
                 src="/images/books/breaking-spiritual-curses-vol-2.jpg"
                 alt="Breaking Spiritual Curses Volume Two — book cover"
-                className="w-28 -translate-y-3 rounded-lg border border-gold/20 shadow-glow sm:w-32"
+                className="aspect-[8.5/11] w-28 -translate-y-3 rounded-lg border border-gold/20 object-cover shadow-glow sm:w-32"
               />
               <img
                 src="/images/books/30-day-devotional.jpg"
                 alt="30-Day Devotional — book cover"
-                className="w-28 rounded-lg border border-gold/20 shadow-glow sm:w-32"
+                className="aspect-[8.5/11] w-28 rounded-lg border border-gold/20 object-cover shadow-glow sm:w-32"
               />
             </div>
             <div>
