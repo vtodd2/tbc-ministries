@@ -48,6 +48,17 @@ const books: Book[] = [
     paypalUrl: 'https://www.paypal.com/ncp/payment/BMJ6TUFZTLRAN',
     coverImage: '/images/books/breaking-spiritual-curses-vol-2.jpg',
   },
+  {
+    id: '4',
+    title: '30-Day Devotional for Breaking Generational Curses and Reclaiming Identity',
+    description:
+      'Begin a 30-day journey toward spiritual freedom, healing, and a renewed family legacy. This companion devotional builds on the biblical principles of breaking generational bondage through the authority of Jesus Christ. Each daily reading offers a focused Scripture, practical reflection, declaration of faith, and prayer to help you confront destructive patterns and replace them with God\'s truth. Designed for personal prayer, quiet time, or small-group study, this devotional provides a daily pathway for believers seeking to break cycles of fear, addiction, broken relationships, despair, and negative confession. Your past does not have the final word — step into God\'s promises one day at a time.',
+    price: '$14.99',
+    available: true,
+    format: ['Paperback'],
+    paypalUrl: 'https://www.paypal.com/ncp/payment/EM9EBV276FM2G',
+    coverImage: '/images/books/30-day-devotional.jpg',
+  },
 ];
 
 export default function BooksPage() {
