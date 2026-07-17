@@ -29,12 +29,24 @@ const books: Book[] = [
     description:
       'The Stairway to Heaven Headed to Hell is a bold call to examine faith through the lens of Scripture rather than tradition. Drawing on years of personal trials and biblical study, V. Lydell Todd challenges readers to test long-held beliefs and consider whether religious customs align with God\'s Word. Addressing topics such as tradition, worship, and salvation, this book encourages believers to seek truth with humility, courage, and discernment — an invitation to move beyond religious routine and pursue a deeper walk of obedience, faith, and freedom in Christ.',
     price: '$19.99',
-    badge: 'New Release',
+    badge: 'Bestseller',
     available: true,
     format: ['Paperback', 'eBook'],
     paypalUrl: 'https://www.paypal.com/ncp/payment/SZBH4ZX7GFZF4',
     ebookUrl: 'https://toddgroupofms.gumroad.com/l/mhkmd',
     coverImage: '/images/books/stairway-to-heaven-headed-to-hell.jpg',
+  },
+  {
+    id: '3',
+    title: 'Breaking Spiritual Curses: Spiritual Freedom For You and The Generations After You — Volume Two',
+    description:
+      'If destructive patterns have echoed through your family for generations, you do not have to remain bound by them. Rooted in Scripture and personal testimony, this powerful book explores the spiritual impact of words, inherited bondage, and generational patterns — equipping believers to confront cycles of addiction, broken relationships, violence, poverty, and despair through faith in Jesus Christ. Inside, readers will find biblical insight, practical guidance, case studies, and targeted prayers designed to help identify destructive spiritual patterns, renounce negative confessions, and embrace God\'s promises of freedom and blessing. The past may have shaped your family\'s story — but it does not have to determine your future.',
+    price: '$14.99',
+    badge: 'New Release',
+    available: true,
+    format: ['Paperback'],
+    paypalUrl: 'https://www.paypal.com/ncp/payment/BMJ6TUFZTLRAN',
+    coverImage: '/images/books/breaking-spiritual-curses-vol-2.jpg',
   },
 ];
 
